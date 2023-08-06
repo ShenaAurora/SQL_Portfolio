@@ -155,4 +155,6 @@ FROM topmovies
 WHERE year >= 2013
 ORDER BY year, worldwide;
 
-#These findings can assist movie production companies in understanding audience preferences, determining where to allocate their investments in studios, and aiding studios in identifying the most promising genres for investment. This creates a profitable cycle driven by data-driven decisions.
+#These findings can assist movie production companies in understanding audience preferences, determining where to allocate their 
+investments in studios, and aiding studios in identifying the most promising genres for investment. This creates a profitable cycle 
+driven by data-driven decisions.
