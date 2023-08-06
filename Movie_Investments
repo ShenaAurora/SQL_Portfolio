@@ -1,5 +1,3 @@
-/*These queries contribute to enhancing a movie production company's investment strategy. By analyzing the top movies dataset, they facilitate data-driven decision-making, offering valuable insights into establishing profitable partnerships, refining movie selection, and optimizing investment decisions*/
-
 /* Source: http://www.boxofficemojo.com/alltime/world/ */
 CREATE TABLE topmovies(
    Ranking     INTEGER,
@@ -114,14 +112,14 @@ INSERT INTO topmovies(Ranking,Title,Studio,Worldwide,Domestic,DomesticPct,Overse
 INSERT INTO topmovies(Ranking,Title,Studio,Worldwide,Domestic,DomesticPct,Overseas,OverseasPct,Year) VALUES (99,'Casino Royale','Sony',599.00,167.40,0.28,431.60,0.72,2006);
 INSERT INTO topmovies(Ranking,Title,Studio,Worldwide,Domestic,DomesticPct,Overseas,OverseasPct,Year) VALUES (100,'Tangled','BV',591.80,200.80,0.34,391.00,0.66,2010);
 
-/*Top 10 Studios with the highest number of Top movies in the list*/
+/*Top 10 Studios with the highest number of Top movies in the list */
 SELECT Studio, COUNT(*) AS Movie_Amount
 FROM topmovies 
 GROUP BY Studio
 ORDER BY Movie_Amount DESC
 LIMIT 10;
 
-/*Top 5 Studios with the highest average Worldwide revenue for its movies*/
+/*Top 5 Studios with the highest average Worldwide revenue for its movies */
 SELECT Studio, ROUND(AVG(Worldwide)) AS AvgWorldwideRevenue
 FROM topmovies
 GROUP BY Studio
@@ -156,3 +154,5 @@ SELECT year, title, worldwide,
 FROM topmovies
 WHERE year >= 2013
 ORDER BY year, worldwide;
+
+#These findings can assist movie production companies in understanding audience preferences, determining where to allocate their investments in studios, and aiding studios in identifying the most promising genres for investment. This creates a profitable cycle driven by data-driven decisions.
