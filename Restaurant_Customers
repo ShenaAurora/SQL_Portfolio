@@ -1,0 +1,26 @@
+-- This mock data represents a fictional restaurant dataset created for analytical purposes. 
+-- This project analyses is to showcase my skills in analyzing customer data to gain insights into loyalty program effectiveness, purchasing behavior, and customer preferences. 
+-- By examining metrics like customer lifetime value (CLV) and churn, the project demonstrates strategies for enhancing personalization and improving customer retention.
+
+
+
+CREATE TABLE Restaurant_Customers (
+    Transaction_ID INT,
+    Customer_ID VARCHAR(50) PRIMARY KEY,
+    Date_of_purchase DATE,
+    Gender VARCHAR(50),
+    Age INT,
+    Product_category VARCHAR(50),
+    Quantity INT,
+    Price_per_unit DECIMAL(10,2),
+    Total_Spend DECIMAL(10,2),
+    Membership_Type VARCHAR(50),
+    Points VARCHAR(50),
+    Income VARCHAR(50),
+    City VARCHAR(255)
+);
+
+--I have moved 1000 rows of excel data into SQL and imported that data into PostgresSQL to Insert into the above table
+
+
+
