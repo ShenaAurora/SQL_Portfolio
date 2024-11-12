@@ -7,7 +7,7 @@ targeting key customer segments, and improving overall customer retention.*/
 
 CREATE TABLE Restaurant_Customers (
     Transaction_ID INT,
-    Customer_ID VARCHAR(50) PRIMARY KEY,
+    Customer_ID VARCHAR(50),
     Date_of_purchase DATE,
     Gender VARCHAR(50),
     Age INT,
