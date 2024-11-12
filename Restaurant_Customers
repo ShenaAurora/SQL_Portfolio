@@ -1,6 +1,8 @@
-/*This mock data represents a fictional restaurant dataset created for analytical purposes. 
-This project analyses is to showcase my skills in analyzing customer data to gain insights into loyalty program effectiveness, purchasing behavior, and customer preferences. 
-By examining metrics like customer lifetime value (CLV) and churn, the project demonstrates strategies for enhancing personalization and improving customer retention.*/
+--This mock data represents a fictional restaurant dataset created for analytical purposes. 
+/*This project analysis is to showcase my skills in analyzing customer data to gain insights into customer behavior, identify high-revenue demographics, 
+and assess product category preferences. The analysis includes segmenting income and age groups to determine their contribution to revenue, identifying top-selling items 
+over a 6-month period, and comparing product preferences across different membership tiers. These insights help inform business strategies for optimizing sales, 
+targeting key customer segments, and improving overall customer retention.*/
 
 
 CREATE TABLE Restaurant_Customers (
