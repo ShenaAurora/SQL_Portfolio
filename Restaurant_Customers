@@ -1,7 +1,6 @@
--- This mock data represents a fictional restaurant dataset created for analytical purposes. 
--- This project analyses is to showcase my skills in analyzing customer data to gain insights into loyalty program effectiveness, purchasing behavior, and customer preferences. 
--- By examining metrics like customer lifetime value (CLV) and churn, the project demonstrates strategies for enhancing personalization and improving customer retention.
-
+/*This mock data represents a fictional restaurant dataset created for analytical purposes. 
+This project analyses is to showcase my skills in analyzing customer data to gain insights into loyalty program effectiveness, purchasing behavior, and customer preferences. 
+By examining metrics like customer lifetime value (CLV) and churn, the project demonstrates strategies for enhancing personalization and improving customer retention.*/
 
 
 CREATE TABLE Restaurant_Customers (
@@ -19,8 +18,75 @@ CREATE TABLE Restaurant_Customers (
     Income VARCHAR(50),
     City VARCHAR(255)
 );
-
 --I have moved 1000 rows of excel data into SQL and imported that data into PostgresSQL to Insert into the above table
 
+--Avgerage spending per customer across different Membership types.
+SELECT membership_type, Round(avg(total_spend),2) AS avg_spend
+FROM restaurant_customers
+GROUP BY membership_type
+ORDER BY avg_spend DESC 
+
+--Identify income and age groups that contribute the most to revenue and determine which product category they frequent." 
+--Results indicate that customers with a Gold membership, a high income, and in the 46-60 age range contribute the most to revenue, primarily through the purchase of chips.
+SELECT 
+    CASE 
+        WHEN Income < 30000 THEN 'Low Income (<30k)'
+        WHEN Income BETWEEN 30000 AND 60000 THEN 'Middle Income (30k-60k)'
+        WHEN Income BETWEEN 60001 AND 100000 THEN 'Upper Middle Income (60k-100k)'
+        WHEN Income > 100000 THEN 'High Income (>100k)'
+        ELSE 'Unknown Income'
+    END AS Income_Segment,
+    CASE 
+        WHEN Age BETWEEN 18 AND 25 THEN '18-25'
+        WHEN Age BETWEEN 26 AND 35 THEN '26-35'
+        WHEN Age BETWEEN 36 AND 45 THEN '36-45'
+        WHEN Age BETWEEN 46 AND 60 THEN '46-60'
+        WHEN Age > 60 THEN '60+'
+        ELSE 'Unknown Age'
+    END AS Age_Segment,
+    Product_category,
+	Membership_type,
+    COUNT(Customer_ID) AS Customer_Count,
+    SUM(Total_Spend) AS Total_Revenue,
+    ROUND(AVG(Total_Spend),2) AS Avg_Spend_Per_Customer,
+    COUNT(Transaction_ID) AS Purchase_Count
+FROM 
+    Restaurant_Customers
+GROUP BY 
+    Income_Segment, Age_Segment, Product_category, Membership_type
+ORDER BY 
+    Total_Revenue DESC
+LIMIT 5;
 
 
+--Top-selling items in the last 6 months 
+--Results indicate that spending by product category ranks in the following order: Chips, Bowls, Pitas, Beverages, and finally Desserts.
+SELECT
+	Product_category,
+	SUM(total_spend) AS total_spend
+FROM
+	restaurant_customers
+WHERE
+	date_of_purchase >= '2023-06-01' AND date_of_purchase <='2024-01-01'
+GROUP BY 
+	Product_category
+ORDER BY
+	total_spend DESC
+LIMIT 5;
+
+
+--Which product categories are most popular among high-tier members compared to low-tier members?
+--Results indicate that Bronze members prefer Chips, Silver members also prefer Chips, and Gold members prefer Bowls
+SELECT
+	Membership_type,
+	SUM(Quantity) AS Quantity,
+	product_category,
+	SUM(total_spend) AS revenue
+FROM
+	restaurant_customers
+WHERE 
+	date_of_purchase >='2023-06-01' AND date_of_purchase <='2024-01-01'
+GROUP BY
+	membership_type, product_category
+ORDER BY
+	membership_type, quantity DESC, product_category;
